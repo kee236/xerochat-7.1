@@ -50,6 +50,24 @@
           </div>
         </div>
 
+
+   <div class="col-lg-6">
+          <div class="card card-large-icons">
+            <div class="card-icon text-primary">
+              <i class="fab fa-line-square"></i>
+            </div>
+            <div class="card-body">
+              <h4><?php echo $this->lang->line("Line"); ?></h4>
+              <p><?php echo $this->lang->line("Set your Line app key, secret etc..."); ?></p>
+              <a href="<?php echo base_url("social_apps/Line_settings"); ?>" class="card-cta"><?php echo $this->lang->line("Change Setting"); ?> <i class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
         <div class="col-lg-6">
           <div class="card card-large-icons">
             <div class="card-icon text-primary">
