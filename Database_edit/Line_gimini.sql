@@ -1,0 +1,11 @@
+CREATE TABLE `line_notify_config` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT NOT NULL,
+  `access_token` VARCHAR(255) NOT NULL,
+  `status` ENUM('0', '1') NOT NULL DEFAULT '0',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
+);
+
+
