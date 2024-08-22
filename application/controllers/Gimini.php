@@ -29,21 +29,21 @@ class Myprofile extends Home
     */
     public function index()
     {
-        $this->edit_profile();
+        $this->edit_ai();
     }
 
 
-    public function edit_profile()
+    public function edit_ai()
     {      
-        $data['body'] = "member/edit_profile";
-        $data['page_title'] = $this->lang->line('Profile');
+        $data['body'] = "member/edit_ai";
+        $data['page_title'] = $this->lang->line('AI');
         $join = array('package'=>"users.package_id=package.id,left");
         $data["profile_info"]=$this->basic->get_data("users",array("where"=>array("users.id"=>$this->session->userdata("user_id"))),"users.*,package_name",$join);
-        $data["time_zone_list"] = $this->_time_zone_list();
+        $data["ai_model_list"] = $this->_ai_model_list();
         $this->_viewcontroller($data);
     }
 
-    public function edit_profile_action()
+    public function edit_ai_action()
     {
         if($this->is_demo == '1' && $this->session->userdata('user_type') == 'Admin')
         {
@@ -58,14 +58,14 @@ class Myprofile extends Home
         if ($_POST) 
         {
             // validation
-            $this->form_validation->set_rules('name',                '<b>'.$this->lang->line("name").'</b>',             'trim|required');
+            $this->form_validation->set_rules('name',                '<b>'.$this->lang->line("name_ai").'</b>',             'trim|required');
             $this->form_validation->set_rules('email',               '<b>'.$this->lang->line("email").'</b>',            'trim|required|valid_email|callback_unique_email_check['.$this->session->userdata('user_id').']');
             $this->form_validation->set_rules('address',             '<b>'.$this->lang->line("address").'</b>',          'trim');
-            $this->form_validation->set_rules('time_zone',             '<b>'.$this->lang->line("Time Zone").'</b>',          'trim');
+            $this->form_validation->set_rules('ai_model',             '<b>'.$this->lang->line("Model").'</b>',          'trim');
 
             if ($this->form_validation->run() == false) 
             {
-                return $this->edit_profile();
+                return $this->edit_ai();
             } 
             else 
             {
@@ -109,7 +109,7 @@ class Myprofile extends Home
                     "time_zone"=>$time_zone
                 );
 
-                if($photo!="") $update_data["brand_logo"] = $photo;
+                if($photo!="") $update_data["ai_logo"] = $photo;
 
                 $this->basic->update_data("users",array("id"=>$this->session->userdata("user_id")),$update_data);
 
