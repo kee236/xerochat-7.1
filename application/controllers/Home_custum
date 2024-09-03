@@ -1,0 +1,136 @@
+    public function _time_zone_list_numeric()
+    {
+        $all_time_zone=array(
+            '-12' => 'GMT -12.00',
+            '-11' => 'GMT -11.00',
+            '-10' => 'GMT -10.00',
+            '-9'  => 'GMT -9.00',
+            '-8'  => 'GMT -8.00',
+            '-7'  => 'GMT -7.00',
+            '-6'  => 'GMT -6.00',
+            '-5'  => 'GMT -5.00',
+            '-4.5'=> 'GMT -4.30',
+            '-4'  => 'GMT -4.00',
+            '-3.5'=> 'GMT -3.30',
+            '-3'  => 'GMT +-3.00',
+            '-2'  => 'GMT +-2.00',
+            '-1'  => 'GMT -1.00',
+            '0'   => 'GMT',
+            '1'   => 'GMT +1.00',
+            '2'   => 'GMT +2.00',
+            '3'   => 'GMT +3.00',
+            '3.5' => 'GMT +3.30',
+            '4'   => 'GMT +4.00',
+            '5'   => 'GMT +5.00',
+            '5.5' => 'GMT +5.30',
+            '5.75'=> 'GMT +5.45',
+            '6'   => 'GMT +6.00',
+            '6.5' => 'GMT +6.30',
+            '7'   => 'GMT +7.00',
+            '8'   => 'GMT +8.00',
+            '9'   => 'GMT +9.00',
+            '9.5' => 'GMT +9.30',
+            '10'  => 'GMT +10.00',
+            '11'  => 'GMT +11.00',
+            '12'  => 'GMT +12.00',
+            '13'  => 'GMT +13.00'
+        );
+
+        return $all_time_zone;
+    }
+
+
+    public function _disable_cache()
+    {
+        header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
+        header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Cache-Control: post-check=0, pre-check=0", false);
+        header("Pragma: no-cache");
+    }
+
+
+    public function access_forbidden()
+    {
+        $this->load->view('page/error',array("page_title"=>$this->lang->line("Access Denied"),"message"=>$this->lang->line("You do not have permission to access this content")));
+    }
+
+    public function error_404()
+    {
+        $this->load->view('page/error');
+    }
+
+    public function _subscription_viewcontroller($data=array())
+    {
+        $current_theme = $this->config->item('current_theme');
+        if($current_theme == '') $current_theme = 'default';
+        if (!isset($data['body'])) $data['body']="site/default/blank";
+        if (!isset($data['page_title'])) $data['page_title']="";
+
+        $theme_file_path = "views/site/".$current_theme."/subscription_theme.php";
+        if(file_exists(APPPATH.$theme_file_path))
+            $theme_load = "site/".$current_theme."/subscription_theme";
+        else
+            $theme_load = "site/default/subscription_theme";
+
+        $this->load->view($theme_load, $data);
+    }
+
+    public function _front_viewcontroller($data=array())
+    {
+        // $this->_disable_cache();
+        if (!isset($data['body']))   $data['body']=$this->config->item('default_page_url');
+        if (!isset($data['page_title'])) $data['page_title']="";
+
+        $loadthemebody="purple";
+        if($this->config->item('theme_front')!="") $loadthemebody=$this->config->item('theme_front');
+
+        $themecolorcode="#545096";
+
+        if($loadthemebody=='blue')        { $themecolorcode="#1193D4";}
+        if($loadthemebody=='white')        { $themecolorcode="#303F42";}
+        if($loadthemebody=='black')        { $themecolorcode="#1A2226";}
+        if($loadthemebody=='green')        { $themecolorcode="#00A65A";}
+        if($loadthemebody=='red')          { $themecolorcode="#E55053";}
+        if($loadthemebody=='yellow')       { $themecolorcode="#F39C12";}
+
+        $data['THEMECOLORCODE']=$themecolorcode;
+
+        $current_theme = $this->config->item('current_theme');
+        if($current_theme == '') $current_theme = 'default';
+        $body_file_path = "views/site/".$current_theme."/theme_front.php";
+        if(file_exists(APPPATH.$body_file_path))
+            $body_load = "site/".$current_theme."/theme_front";
+        else
+            $body_load = "site/default/theme_front";
+
+        if(file_exists(APPPATH.'core/licence_type.txt'))
+            $this->license_check_action();
+
+        $this->load->view($body_load, $data);
+    }
+
+    public function _viewcontroller($data=array())
+    {        
+        if (!isset($data['body'])) {
+            $data['body']=$this->config->item('default_page_url');
+        }
+
+        if (!isset($data['page_title'])) {
+            $data['page_title']=$this->lang->line("Admin Panel");
+        }
+
+
+        if($this->session->userdata('download_id_front')=="")
+        $this->session->set_userdata('download_id_front', md5(time().$this->_random_number_generator(10)));
+
+        if($this->session->userdata('user_type') == 'Admin' || in_array(65,$this->module_access))
+        {
+            $fb_rx_account_switching_info = $this->basic->get_data("facebook_rx_fb_user_info",array("where"=>array("user_id"=>$this->user_id)));
+            $data["fb_rx_account_switching_info"] =array();
+            foreach ($fb_rx_account_switching_info as $key => $value)
+            {
+                $str="";
+                $data["fb_rx_account_switching_info"][$value["id"]] =  $str.$value["name"];
+            }
+        }  
