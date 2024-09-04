@@ -1,0 +1,11 @@
+INSERT INTO `modules` (`id`, `module_name`, `add_ons_id`, `extra_text`, `limit_enabled`, `bulk_limit_enabled`, `deleted`) VALUES
+
+
+
+(310, 'Whatsapp Send Order', 4, '', '0', '0', '0'),
+(317, 'E-commerce Related Products', 5, '', '1', '0', '0'),
+(318, 'Messenger Bot - Connectivity : JSON API', 6, '', '1', '0', '0'),
+(319, 'Messenger Bot - Connectivity : Webview Builder', 6, '', '1', '0', '0'),
+(320, 'User Input Flow Campaign', 318, 'month', '1', '0', '0'),
+(321, 'Messenger Bot - Connectivity : JSON API', 7, '', '1', '0', '0'),
+(322, 'Messenger Bot - Connectivity : Webview Builder', 7, '', '1', '0', '0');
