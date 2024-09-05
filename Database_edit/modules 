@@ -1,3 +1,112 @@
+
+
+
+-- สร้างตาราง add_ons 
+CREATE TABLE IF NOT EXISTS `add_ons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT, 
+  `add_on_name` varchar(255) NOT NULL,
+  `unique_name` varchar(255) NOT NULL,
+  `version` varchar(255) NOT NULL,
+  `installed_at` datetime NOT NULL,
+  `update_at` datetime NOT NULL,
+  `purchase_code` varchar(100) NOT NULL,
+  `module_folder_name` varchar(255) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`unique_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+-- เพิ่มข้อมูลลงในตาราง add_ons
+INSERT INTO `add_ons` (`id`, `add_on_name`, `unique_name`, `version`, `installed_at`, `update_at`, `purchase_code`, `module_folder_name`, `project_id`) VALUES
+(1, 'Facebook Poster', 'ultrapost', '1.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'ultrapost', 19),
+(3, 'Instagram Bot & Private Reply', 'instagram_bot', '1.0', '2022-01-19 12:00:00', '2022-01-19 12:00:00', '', 'instagram_bot', 62),
+(4, 'Whatsapp Order Send', 'whatsapp_order_send', '1.1', '2021-07-27 01:19:13', '0000-00-00 00:00:00', 'r0306292628833360ff42', 'whatsapp_order_send', 58),
+(5, 'E-commerce Related Products', 'ecommerce_related_products', '1.0', '2021-07-27 01:23:04', '0000-00-00 00:00:00', 'r03062123194079260ff4', 'ecommerce_related_products', 61),
+(6, 'Affiliate Manager', 'affiliate_system', '1.1', '2021-03-22 19:54:10', '0000-00-00 00:00:00', 'r0306211058160156058d', 'affiliate_system', 57),
+(7, 'Facebook Group Poster', 'facebook_group_poster', '1.0', '2021-03-23 01:05:53', '0000-00-00 00:00:00', 'r03062185445456605922', 'facebook_group_poster', 32),
+(8, 'Flowbuilder Insignt', 'message_sent_stat', '1.0', '2021-07-27 01:23:04', '0000-00-00 00:00:00', 'r03062123194079260ff4', 'message_sent_stat', 64),
+(10, 'API Documentation', 'api_documentation', '2.0', '2021-07-27 01:23:04', '0000-00-00 00:00:00', 'r03062123194079260ff4', 'api', 46),
+(11, 'Blog', 'blog', '1.0', '2021-07-27 01:23:04', '0000-00-00 00:00:00', '', 'blog', 0),
+(12, 'Comment Automation : Auto Reply Posts', 'comment_automation_auto_reply_posts', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'comment_automation_auto_reply_posts', 1),
+(13, 'Conversation Promo Broadcast Send', 'conversation_promo_broadcast_send', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'conversation_promo_broadcast_send', 1),
+(14, 'Email Broadcast - Email Send', 'email_broadcast_email_send', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'email_broadcast_email_send', 1),
+(15, 'Facebook Accounts', 'facebook_accounts', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'facebook_accounts', 1),
+(16, 'Facebook Pages', 'facebook_pages', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'facebook_pages', 1),
+(17, 'Facebook Pages - Subscribers/Page', 'facebook_pages_subscribers_page', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'facebook_pages_subscribers_page', 1),
+(18, 'Facebook Posting :  Text/Image/Link/Video Post', 'facebook_posting_text_image_link_video_post', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'facebook_posting_text_image_link_video_post', 1),
+(19, 'Facebook Posting : Carousel/Slider Post', 'facebook_posting_carousel_slider_post', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'facebook_posting_carousel_slider_post', 1),
+(20, 'Facebook Posting : CTA Post', 'facebook_posting_cta_post', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'facebook_posting_cta_post', 1),
+(21, 'Comment Automation : Auto Comment Campaign', 'comment_automation_auto_comment_campaign', '1.0', '2023-08-30 14:22:00', '2023-08-30 14:22:00', '', 'comment_automation_auto_comment_campaign', 1),
+(22, 'Menu Manager', 'menu_menager', '1.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'menu_menager', 0),
+
+(23, 'User Input & Custom Fields', 'custom_field_manager', '2.0.1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'custom_field_manager', 49),
+(24, 'Flowbuilder Conditional', 'flowbuilder_condition', '1.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'flowbuilder_condition', 63),
+(27, 'Messenger Bot Connectivity', 'messenger_bot_connectivity', '2.5.7', '2024-08-31 16:53:38', '2024-08-31 16:53:38', '', 'messenger_bot_connectivity', 31),
+(28, 'User Input & Custom Fields', 'custom_field_manager', '2.0.1', '2024-08-31 16:58:05', '2024-08-31 16:58:05', '', 'custom_field_manager', 49),
+(29, 'Messenger Bot Enhancers', 'messenger_bot_enhancers', '2.0.3', '2024-08-31 16:59:24', '2024-08-31 16:59:24', '', 'messenger_bot_enhancers', 30),
+(30, ' NVX Task Manager', 'n_task', '1.2.1', '2024-08-31 16:53:38', '2024-08-31 16:53:38', '', 'n_task', 1101),
+(31, 'SMS & Email Sequence', 'sms_email_sequence', '2.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'sms_email_sequence', 40),
+(32, 'Hidden Interest Explorer', 'hidden_interest_explorer', '1.7', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'hidden_interest_explorer', 1013),
+(33, 'Comment Reply Enhancers', 'comment_reply_enhancers', '2.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'comment_reply_enhancers', 29),
+(34, 'Blog', 'blog', '1.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'blog', 0),
+(35, 'Comboposter', 'comboposter', '1.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'comboposter', 19),
+(36, 'Visual Flow Builder ', 'visual_flow_builder', '1.6.9', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'visual_flow_builder', 59);
+
+-- Insert into modules table
+INSERT INTO `modules` (`module_name`, `add_ons_id`, `extra_text`, `limit_enabled`, `bulk_limit_enabled`, `deleted`) 
+VALUES 
+('Social Poster - Account Import : Youtube', 0, '', '1', '0', '0'),
+('Facebook Accounts', 0, '', '1', '0', '0'),
+('Facebook Pages - Subscribers/Page', 0, '', '1', '0', '0'),
+('Subscriber Manager : Background Lead Scan', 0, '', '0', '0', '0'),
+('Conversation Promo Broadcast Send', 0, 'month', '1', '1', '0'),
+('Comment Automation : Auto Reply Posts', 0, 'month', '1', '0', '0'),
+('Inbox Conversation Manager', 0, '', '0', '0', '0'),
+('Social Poster - Access', 0, '', '0', '0', '0'),
+('Social Poster - Account Import : Pinterest', 0, '', '1', '0', '0'),
+('Social Poster - Account Import : Twitter', 0, '', '1', '0', '0'),
+('Social Poster - Account Import :  Linkedin', 0, '', '1', '0', '0'),
+('Social Poster - Account Import : Reddit', 0, '', '1', '0', '0'),
+('Social Poster - Account Import : Blogger', 0, '', '1', '0', '0'),
+('Social Poster - Account Import :  WordPress', 0, '', '1', '0', '0'),
+('Social Poster - Account Import :  WordPress (Self hosted) ', 0, '', '1', '0', '0'),
+('Social Poster - Text Post', 0, 'month', '1', '1', '0'),
+('Social Poster - Image Post', 0, 'month', '1', '1', '0'),
+('Social Poster - Video Post', 0, 'month', '1', '1', '0'),
+('Social Poster - Link Post', 0, 'month', '1', '1', '0'),
+('Social Poster - HTML Post', 0, 'month', '1', '1', '0'),
+('Messenger Bot - Persistent Menu', 0, '', '0', '0', '0'),
+('Messenger Bot - Persistent Menu : Copyright Enabled', 0, '', '0', '0', '0'),
+('Messenger Bot', 0, '', '0', '0', '0'),
+('Facebook Pages', 0, '', '1', '0', '0'),
+('Facebook Posting : CTA Post', 0, 'month', '1', '0', '0'),
+('Facebook Posting : Carousel/Slider Post', 0, 'month', '1', '0', '0'),
+('Facebook Posting :  Text/Image/Link/Video Post', 0, 'month', '1', '0', '0'),
+('Comment Automation : Auto Comment Campaign', 0, '', '1', '0', '0'),
+('RSS Auto Posting', 0, '', '1', '0', '0'),
+('Messenger Bot : Export, Import & Tree View', 0, '', '1', '', '0'),
+('Email Broadcast - Email Send', 0, 'month', '1', '0', '0'),
+('SMS Broadcast - SMS Send', 0, 'month', '1', '0', '0'),
+('Messenger Bot - Email Auto Responder', 0, '', '1', '0', '0'),
+('Utility Search Tools', 0, 'month', '1', '0', '0'),
+('Messenger E-commerce', 0, '', '1', '0', '0'),
+('One Time Notification Send', 0, 'month', '1', '0', '0'),
+('Social Poster - Account Import :  Medium', 0, '', '1', '0', '0'),
+('Instagram Auto Comment Reply Enable Post', 0, 'month', '1', '0', '0'),
+('Instagram Posting : Image/Video Post', 0, 'month', '1', '1', '0'),
+('Visual Flow Builder', 0, '', '1', '0', '0'),
+('Instagram Bot', 0, 'month', '1', '0', '0'),
+('Messenger Bot - Enhancers : Broadcast : Subscriber Bulk Message Send', (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'month', '1', '1', '0'),
+('Messenger Bot - Enhancers :
+
+
+
+
+
+
+
+
+
 INSERT INTO `modules` (`id`, `module_name`, `add_ons_id`, `extra_text`, `limit_enabled`, `bulk_limit_enabled`, `deleted`) VALUES
 
 
