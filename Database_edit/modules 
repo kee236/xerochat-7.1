@@ -52,6 +52,19 @@ INSERT INTO `add_ons` (`id`, `add_on_name`, `unique_name`, `version`, `installed
 (35, 'Comboposter', 'comboposter', '1.0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'comboposter', 19),
 (36, 'Visual Flow Builder ', 'visual_flow_builder', '1.6.9', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'visual_flow_builder', 59);
 
+
+ 
+('','WooCommerce Integration',' woocommerce_integration','2.0','','','50'),
+
+
+('',' WooCommerce Abandoned Cart Recovery'
+,'woocommerce_abandoned_cart','1.0.3','0000-00-00 00:00:00', '0000-00-00 00:00:00', '','woocommerce_abandoned_cart','33')
+
+   
+
+
+
+
 -- Insert into modules table
 INSERT INTO `modules` (`module_name`, `add_ons_id`, `extra_text`, `limit_enabled`, `bulk_limit_enabled`, `deleted`) 
 VALUES 
@@ -103,6 +116,45 @@ VALUES
 
 
 
+
+
+
+  ('','',' ','',
+
+Modules:
+{
+   ""293"":{
+      ""bulk_limit_enabled"":""0"",
+      ""limit_enabled"":""1"",
+      ""extra_text"":"""",
+      ""module_name"":""WooCommerce Integration""
+   }
+}
+Project ID: 50
+Addon URI: https://xerochat.com
+Author: Xerone IT
+Author URI: http://xeroneit.net
+Version: 2.0
+Description: Import WooCommerce products to sell inside Messenger using webview and export products as Ecommerce product"
+
+('',' WooCommerce Abandoned Cart Recovery'
+,'woocommerce_abandoned_cart','1.0.3',
+
+woocommerce_abandoned_cart','33')
+Modules:
+{
+   ""266"":{
+      ""bulk_limit_enabled"":""0"",
+      ""limit_enabled"":""1"",
+      ""extra_text"":"""",
+      ""module_name"":""WooCommerce Abandoned Cart Recovery""
+   }
+}
+Project ID: 33
+Addon URI: https://xerochat.com
+Author: Xerone IT
+Author URI: http://xeroneit.net
+Version: 1.0.3"
 
 
 
