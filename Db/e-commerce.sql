@@ -190,3 +190,129 @@ CREATE TABLE IF NOT EXISTS `messenger_bot_drip_report` (
   PRIMARY KEY (`id`),
   KEY `campaign_id` (`campaign_id`,`user_id`,`page_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- ตาราง ecommerce_engagement_coupon
+CREATE TABLE IF NOT EXISTS `ecommerce_engagement_coupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `coupon_id` int(11) NOT NULL COMMENT 'ecommerce_coupon.id',
+  `visual_flow_campaign_id` int(11) NOT NULL,
+  `template_id` int(11) NOT NULL COMMENT 'messenger_bot_postback.id',
+  `visual_flow_type` enum('flow','general') NOT NULL DEFAULT 'general',
+  `created_at` datetime NOT NULL,
+  `expired_at` datetime NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`,`coupon_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ตาราง ecommerce_engagement_product
+CREATE TABLE IF NOT EXISTS `ecommerce_engagement_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL COMMENT 'ecommerce_product.id',
+  `visual_flow_campaign_id` int(11) NOT NULL,
+  `template_id` int(11) NOT NULL COMMENT 'messenger_bot_postback.id',
+  `visual_flow_type` enum('flow','general') NOT NULL DEFAULT 'general',
+  `created_at` datetime NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`,`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ตาราง messenger_bot_engagement_messenger_codes
+CREATE TABLE IF NOT EXISTS `messenger_bot_engagement_messenger_codes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qr_code_id` int(11) NOT NULL,
+  `visual_flow_campaign_id` int(11) NOT NULL,
+  `template_id` int(11) NOT NULL COMMENT 'messenger_bot_postback.id',
+  `page_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `scan_limit` varchar(255) NOT NULL DEFAULT 'unlimited',
+  `label_ids` varchar(255) NOT NULL COMMENT 'comma seperated, messenger_bot_broadcast_contact_group.id',
+  `reference` varchar(255) NOT NULL,
+  `visual_flow_type` enum('flow','general') NOT NULL DEFAULT 'general',
+  `created_at` datetime NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`,`page_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ตาราง messenger_bot_engagement_2way_chat_plugin
+CREATE TABLE IF NOT EXISTS `messenger_bot_engagement_2way_chat_plugin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain_code` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `page_auto_id` int(11) NOT NULL,
+  `facebook_rx_fb_user_info_id` int(11) NOT NULL,
+  `domain_name` varchar(255) NOT NULL,
+  `language` varchar(200) NOT NULL DEFAULT 'en_US',
+  `minimized` enum('hide','show','fade') NOT NULL DEFAULT 'show',
+  `logged_in` tinytext NOT NULL,
+  `logged_out` tinytext NOT NULL,
+  `color` varchar(100) NOT NULL,
+  `label_ids` varchar(250) NOT NULL COMMENT 'comma seperated,messenger_bot_broadcast_contact_group.id',
+  `reference` varchar(250) NOT NULL,
+  `template_id` int(11) NOT NULL COMMENT 'messenger_bot_postback.id',
+  `delay` int(11) NOT NULL DEFAULT 5,
+  `donot_show_if_not_login` enum('0','1') NOT NULL DEFAULT '0',
+  `add_date` datetime NOT NULL,
+  `visual_flow_campaign_id` int(11) NOT NULL,
+  `visual_flow_type` enum('flow','general') NOT NULL DEFAULT 'general',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `domain_code` (`domain_code`),
+  KEY `user_id` (`user_id`,`page_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ตาราง messenger_bot_engagement_mme
+CREATE TABLE IF NOT EXISTS `messenger_bot_engagement_mme` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `page_id` int(11) NOT NULL COMMENT 'auto id',
+  `domain_name` varchar(255) NOT NULL,
+  `link_code` varchar(100) NOT NULL,
+  `btn_size` enum('small','medium','large','xlarge') NOT NULL DEFAULT 'medium',
+  `new_button_bg_color` varchar(100) NOT NULL,
+  `new_button_bg_color_hover` varchar(100) NOT NULL,
+  `new_button_color` varchar(100) NOT NULL,
+  `new_button_color_hover` varchar(100) NOT NULL,
+  `new_button_display` enum('show','hide') NOT NULL DEFAULT 'show',
+  `label_ids` varchar(250) NOT NULL COMMENT 'comma seperated,messenger_bot_broadcast_contact_group.id',
+  `reference` varchar(250) NOT NULL,
+  `template_id` int(11) NOT NULL COMMENT 'messenger_bot_postback.id',
+  `created_at` datetime NOT NULL,
+  `visual_flow_campaign_id` int(11) NOT NULL,
+  `visual_flow_type` enum('flow','general') NOT NULL DEFAULT 'general',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `link_code` (`link_code`),
+  KEY `page_id` (`page_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ตาราง messenger_bot_engagement_send_to_msg
+CREATE TABLE IF NOT EXISTS `messenger_bot_engagement_send_to_msg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain_code` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `page_id` int(11) NOT NULL COMMENT 'auto id',
+  `domain_name` varchar(255) NOT NULL,
+  `btn_size` enum('small','medium','large','xlarge') NOT NULL DEFAULT 'medium',
+  `skin` enum('light','dark') NOT NULL DEFAULT 'light' COMMENT 'light=black, dark=white',
+  `button_click_success_message` tinytext NOT NULL,
+  `label_ids` varchar(250) NOT NULL COMMENT 'comma seperated,messenger_bot_broadcast_contact_group.id',
+  `reference` varchar(250) NOT NULL,
+  `template_id` int(11) NOT NULL COMMENT 'messenger_bot_postback.id',
+  `cta_text_option` varchar(25) NOT NULL DEFAULT 'SUBSCRIBE_NOW',
+  `redirect` enum('0','1') NOT NULL DEFAULT '0',
+  `language` varchar(200) NOT NULL DEFAULT 'en_US',
+  `add_button_with_message` enum('0','1') NOT NULL DEFAULT '0',
+  `button_with_message_content` tinytext NOT NULL COMMENT 'json',
+  `success_redirect_url` tinytext NOT NULL,
+  `created_at` datetime NOT NULL,
+  `visual_flow_campaign_id` int(11) NOT NULL,
+  `visual_flow_type` enum('flow','general') NOT NULL DEFAULT 'general',
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`,`page_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
