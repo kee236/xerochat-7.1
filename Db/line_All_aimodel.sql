@@ -1,3 +1,35 @@
+-- Table to store AI model details
+CREATE TABLE IF NOT EXISTS `ai_models` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `model_name` VARCHAR(255) NOT NULL, -- e.g., 'gpt-3.5-turbo'
+    `description` TEXT, 
+    `capabilities` TEXT, -- JSON array of supported features
+    `access_token` VARCHAR(255), -- If required by the AI provider
+    `status` ENUM('0','1') NOT NULL DEFAULT '1',
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table to log AI interactions
+CREATE TABLE IF NOT EXISTS `ai_interactions` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `user_id` INT(11) NOT NULL,
+    `flow_campaign_id` INT(11) NOT NULL, -- Link to visual_flow_builder_campaign
+    `ai_model_id` INT(11) NOT NULL, -- Link to ai_models
+    `prompt` TEXT NOT NULL,
+    `response` TEXT NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`flow_campaign_id`) REFERENCES `visual_flow_builder_campaign` (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`ai_model_id`) REFERENCES `ai_models` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `messenger_bot`
+ADD COLUMN `is_ai_generated` ENUM('0','1') NOT NULL DEFAULT '0',
+ADD COLUMN `ai_model_id` INT(11) DEFAULT NULL,
+ADD FOREIGN KEY (`ai_model_id`) REFERENCES `ai_models` (`id`) ON DELETE SET NULL;
+
 
 
 -- ตาราง ai_models
