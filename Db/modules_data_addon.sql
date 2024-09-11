@@ -42,3 +42,29 @@ VALUES
 (325, (SELECT id FROM add_ons WHERE unique_name='flowbuilder_condition'), 'Flowbuilder Conditional Reply', '', '0', '0', '0'),
 (281, (SELECT id FROM add_ons WHERE unique_name='ecommerce_product_price_variation'), 'E-commerce Product Price Variation', '', '0', '0', '0'),
 (292, (SELECT id FROM add_ons WHERE unique_name='custom_field_manager'), 'User Input Flow Campaign', 'month', '1', '0', '0');
+
+
+
+
+-- Insert into modules table
+INSERT INTO `modules` (`id`, `module_name`, `add_ons_id`, `extra_text`, `limit_enabled`, `bulk_limit_enabled`, `deleted`) 
+VALUES 
+(220, (SELECT id FROM add_ons WHERE unique_name='comboposter'), 'Comboposter', '', '1', '0', '0'),
+(211, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Broadcast : Subscriber Bulk Message Send', 'month', '1', '1', '0'),
+(213, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Engagement : Checkbox Plugin', '', '1', '0', '0'),
+(214, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Engagement : Send to Messenger', '', '1', '0', '0'),
+(215, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Engagement : m.me Links', '', '1', '0', '0'),
+(217, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Engagement : Customer Chat Plugin', '', '1', '0', '0'),
+(218, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Sequence Messaging : Message Send', '', '1', '0', '0'),
+(219, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_enhancers'), 'Messenger Bot - Enhancers : Sequence Messaging Campaign', '', '1', '0', '0'),
+(266, (SELECT id FROM add_ons WHERE unique_name='woocommerce_abandoned_cart'), 'WooCommerce Abandoned Cart Recovery', '', '1', '0', '0'),
+(252, (SELECT id FROM add_ons WHERE unique_name='vidcasterlive'), 'Facebook Live Streaming - Campaigns', 'month', '1', '0', '0'),
+(254, (SELECT id FROM add_ons WHERE unique_name='vidcasterlive'), 'Facebook Live Streaming - Crossposting/Auto Share/Comment', '', '1', '0', '0'),
+(3003, (SELECT id FROM add_ons WHERE unique_name='hidden_interest_explorer'), 'Hidden Interest Explorer', '', '0', '0', '0'),
+(270, (SELECT id FROM add_ons WHERE unique_name='sms_email_sequence'), 'SMS Broadcast - Sequence Campaign', 'month', '1', '0', '0'),
+(271, (SELECT id FROM add_ons WHERE unique_name='sms_email_sequence'), 'Email Broadcast - Sequence Campaign', 'month', '1', '0', '0'),
+(258, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_connectivity'), 'Messenger Bot - Connectivity : JSON API', '', '1', '0', '0'),
+(261, (SELECT id FROM add_ons WHERE unique_name='messenger_bot_connectivity'), 'Messenger Bot - Connectivity : Webview Builder', '', '1', '0', '0'),
+(293, (SELECT id FROM add_ons WHERE unique_name='woocommerce_integration'), 'WooCommerce Integration', '', '1', '0', '0'),
+(325, (SELECT id FROM add_ons WHERE unique_name='flowbuilder_condition'), 'Flowbuilder Conditional Reply', '', '0', '0', '0'),
+(281, (SELECT id FROM add_ons WHERE unique_name='ecommerce_product_price_variation'), 'E-commerce Product Price Variation', '', '0', '0', '0');
